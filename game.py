@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import math 
+import time
 
 # initialise pygame
 pygame.init()
@@ -9,6 +10,17 @@ pygame.init()
 clock = pygame.time.Clock()
 FPS = 69
 
+#the last update time
+last_update = 0
+
+def interval(time_interval):
+  global last_update
+  current_time = time.time()
+  if (current_time - last_update > time_interval):
+      last_update = current_time
+      return True
+  return False
+  
 
 WINDOW_WIDTH = 900  # something less to prevent visual glitches while the bg is scrolling
 WINDOW_HEIGHT = 768 # bg's height
@@ -21,14 +33,14 @@ pygame.display.set_caption('Velocity Rush')
 bg = pygame.image.load('assets/bg.png').convert()
 bg_width = bg.get_width()
 
-#bg scrolling vars
+# bg scrolling vars
 bg_pos_x = 0
-scroll_speed = 3
+scroll_speed = 2
 to_increment = 0.0069420
 tiles = math.ceil( WINDOW_WIDTH / bg_width) + 1
 
-#colors
-GROUND_COLOR = (139,69,19) #rgb of brown color
+# colors
+GROUND_COLOR = (139,69,19) # rgb of brown color
 GROUND_HEIGHT = 70 
 
 
@@ -42,11 +54,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    #move the bg 
+    # move the bg 
     bg_pos_x -= scroll_speed
-    scroll_speed += to_increment
+    if(interval(2)): #increment it every 2 seconds
+        scroll_speed = (scroll_speed + to_increment)
+#    print(f'Scroll speed :- {scroll_speed}' )
     
-    #check if it is out of screen, if yes then reset its position
+    # check if it is out of screen, if yes then reset its position
     if bg_pos_x <= -bg_width:
         bg_pos_x += bg_width  
          
@@ -58,7 +72,7 @@ while running:
     screen.blit(bg, (bg_pos_x, 0))
     screen.blit(bg, (bg_pos_x + bg_width, 0))
     
-    #draw the ground
+    # draw the ground
     pygame.draw.rect(screen,GROUND_COLOR,(0, WINDOW_HEIGHT-GROUND_HEIGHT,WINDOW_WIDTH+1,GROUND_HEIGHT)) #(x coord, y coord, width, height)
         
     pygame.display.update()
