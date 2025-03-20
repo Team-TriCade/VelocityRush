@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjkw82cjduf88"]
+[gd_scene load_steps=34 format=3 uid="uid://cjkw82cjduf88"]
 
 [ext_resource type="Texture2D" uid="uid://ducuq2lfbgpl8" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://l4fqaagd3oqy" path="res://scripts/Player.gd" id="1_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -239,12 +240,13 @@ radius = 6.0
 [node name="Player" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_wnwbv")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.939934
+frame_progress = 0.595303
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 6)
