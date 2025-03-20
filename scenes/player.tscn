@@ -238,6 +238,7 @@ animations = [{
 radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 5
 script = ExtResource("1_g2els")
 
 [node name="Image" type="AnimatedSprite2D" parent="."]
