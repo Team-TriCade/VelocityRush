@@ -74,7 +74,6 @@ while running:
     
     # draw the ground
     pygame.draw.rect(screen,GROUND_COLOR,(0, WINDOW_HEIGHT-GROUND_HEIGHT,WINDOW_WIDTH+1,GROUND_HEIGHT)) #(x coord, y coord, width, height)
-        
     pygame.display.update()
     
     
